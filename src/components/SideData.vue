@@ -8,19 +8,19 @@
         class="pa-4 pb-2 mx-3 side-list"
       >
         <v-list-item-content>
-          <div class="d-flex align-center">
+          <div class="d-flex align-center sideData">
+            <div class="d-flex flex-column align-center">
             <v-img
               max-height="60"
               max-width="60"
               :src="`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`"
             ></v-img>
-            <p class="text-body-2 mt-5">{{ item.dt }}</p>
+            <p class="text-body-2">{{ item.dt }}</p>
+            </div>
             <v-spacer></v-spacer>
-            <div class="d-flex">
-              <p class="text-body-1 font-weight-bold ml-4 mt-5 text-capitalize">
+            <p class="text-body-1 font-weight-bold ml-4 mt-5 text-capitalize">
                 {{ item.weather[0].description }}
               </p>
-            </div>
             <v-spacer></v-spacer>
             <div>
               <p class="text-body-1 mt-4">
@@ -76,5 +76,15 @@ export default {
 }
 .side-list {
   border-bottom: 1px solid black;
+}
+
+@media screen and (max-width: 430px){
+.sideData{
+  flex-direction: column;
+  align-items: center;
+}
+.sideData > p{
+  margin-top: 2px;
+}
 }
 </style>

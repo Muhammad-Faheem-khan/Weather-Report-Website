@@ -17,7 +17,7 @@
         Go
       </v-btn>
     </div>
-    <div class="d-flex bg-container pa-5 mt-5">
+    <div class="d-flex bg-container pa-5 mt-5 main-menu">
       <div>
         <h3 class="text-h4">{{ currentWeather ? currentWeather.name: 'City' }}</h3>
         <p class="text-body-2 mt-2">
@@ -38,7 +38,7 @@
     <div class=" pa-5 mt-5">
       <p class="text-h5 text-center">Today's Forecast</p>
       <div class="d-flex flex-column ">
-        <div class="d-flex justify-space-between  bg-container my-2 py-4 px-7" v-for="item in dailyForecastData" :key="item.dt">
+        <div class="flex-data d-flex justify-space-between  bg-container my-2 py-4 px-7" v-for="item in dailyForecastData" :key="item.dt">
 
           <v-img
               max-height="60"
@@ -94,5 +94,18 @@ export default {
 .bg-container {
   background-color: #eaecef;
   border-radius: 0.5rem;
+}
+@media screen and (max-width: 430px){
+.flex-data{
+  flex-direction: column;
+  align-items: center;
+}
+.flex-data > p{
+  margin-top: 2px;
+}
+.main-menu{
+  flex-direction: column;
+  align-items: center;
+}
 }
 </style>
