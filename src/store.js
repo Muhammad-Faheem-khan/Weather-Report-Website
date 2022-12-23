@@ -25,6 +25,7 @@ export const store = new Vuex.Store({
         },
         getCurrentWeather(state, data) {
             state.currentWeather = data
+            console.log(data)
         },
         setCity(state, city){
             state.city = city
@@ -35,10 +36,14 @@ export const store = new Vuex.Store({
         getInitialData(context) {
             if(store.state.city){
             fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${store.state.city}&units=metric&appid=10432c2e3f84b54767a8dc7581b1393e`).then(response => response.json()).then(data => {
+                if(data.message != 'city not found'){
                 context.commit("getInitialData", data)
+                }
             });
             fetch(`http://api.openweathermap.org/data/2.5/weather?q=${store.state.city}&units=metric&appid=10432c2e3f84b54767a8dc7581b1393e`).then(response => response.json()).then(data => {
+                if(data.message != 'city not found'){
                 context.commit("getCurrentWeather", data)
+                }
             });
         }
         },
@@ -63,7 +68,7 @@ export const store = new Vuex.Store({
                     // Success!
                     let data = JSON.parse(request.responseText);
                     context.commit("setCity" ,data.results[0].components.city)
-
+                    
                 } else if (request.status <= 500) {
                     console.log("unable to geocode! Response code: " + request.status);
                     let data = JSON.parse(request.responseText);

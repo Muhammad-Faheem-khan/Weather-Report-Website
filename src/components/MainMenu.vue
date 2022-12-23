@@ -19,7 +19,7 @@
     </div>
     <div class="d-flex bg-container pa-5 mt-5">
       <div>
-        <h3 class="text-h4">{{ cityName }}</h3>
+        <h3 class="text-h4">{{ currentWeather ? currentWeather.name: 'City' }}</h3>
         <p class="text-body-2 mt-2">
           Humidity Level: {{ currentWeather ? currentWeather.main.humidity: '-' }}
         </p>
